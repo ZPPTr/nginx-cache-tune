@@ -1,0 +1,18 @@
+services:
+  web:
+    image: nginx:latest
+    hostname: server
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www/public
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+
+  php:
+    image: php:8-fpm
+    container_name: php
+    hostname: backend
+    ports:
+      - 9000:9000
+    volumes:
+      - ./src:/var/www/public
